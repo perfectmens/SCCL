@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Information and Captcha</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 20px;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            color: #f00;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #00a8ff;
+        }
+
+        input, button {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        #captcha_image {
+            font-size: 20px;
+            color: #000;
+            background-color: #eee;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #00a8ff;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0080c7;
+        }
+    </style>
+</head>
+<body>
+    <h1>User Information</h1>
+    <form action="submit.php" method="post">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <br>
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" required>
+        <br>
+        <label for="captcha">Enter the Captcha:</label>
+        <span id="captcha_image"></span>
+        <br>
+        <input type="text" id="captcha_input" name="captcha_input" required>
+        <br>
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        // Generate a random captcha image
+        function generateCaptcha() {
+            let captchaText = "";
+            for (let i = 0; i < 5; i++) {
+                captchaText += String.fromCharCode(Math.floor(Math.random() * 26) + 65);
+            }
+            document.getElementById("captcha_image").innerHTML = captchaText;
+            return captchaText;
+        }
+
+        // Initialize the captcha on page load
+        window.onload = function() {
+            generateCaptcha();
+        };
+    </script>
+</body>
+</html>
